@@ -20,7 +20,11 @@ public class Product implements Serializable {
 
     // the categories set is already instantiated, so it is not null
     // Set is an interface, so it cannot be instantiated
-    @Transient
+    @ManyToMany
+    @JoinTable(name = "tb_product_category",
+            joinColumns = @JoinColumn(name="product_id"),
+            inverseJoinColumns = @JoinColumn(name="category_id")
+    )
     private Set<Category> categories = new HashSet<>();
 
     public Product() {
